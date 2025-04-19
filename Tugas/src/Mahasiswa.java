@@ -1,23 +1,28 @@
-// Kelas Mahasiswa untuk menyimpan data login mahasiswa
-class Mahasiswa {
-    private final String nama;
-    private final String nim;
+public class Mahasiswa extends user {
 
-    // Constructor
     public Mahasiswa(String nama, String nim) {
-        this.nama = nama;
-        this.nim = nim;
+        super(nama, nim);
     }
 
-    // Method untuk login mahasiswa
-    public boolean login(String inputNama, String inputNim) {
-        return inputNama.equals(nama) && inputNim.equals(nim);
+    @Override
+    public void login() {
+        java.util.Scanner input = new java.util.Scanner(System.in);
+        System.out.print("Masukkan nama: ");
+        String inputNama = input.nextLine();
+        System.out.print("Masukkan NIM: ");
+        String inputNim = input.nextLine();
+
+        if (inputNama.equals(getNama()) && inputNim.equals(getNim())) {
+            System.out.println("Login Mahasiswa berhasil!");
+            displayInfo();
+        } else {
+            System.out.println("Login Mahasiswa gagal. Nama atau NIM salah.");
+        }
     }
 
-    // Method untuk menampilkan informasi mahasiswa
+    @Override
     public void displayInfo() {
-        System.out.println("Login Berhasil!");
-        System.out.println("Nama: " + nama);
-        System.out.println("NIM: " + nim);
+        System.out.println("Selamat datang Mahasiswa " + getNama() + ", NIM: " + getNim());
     }
 }
+

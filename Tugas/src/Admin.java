@@ -1,9 +1,27 @@
-class Admin {
-    private String username = "Admin261";
-    private String password = "password261";
+public class Admin extends user {
 
-    // Method untuk login admin
-    public boolean login(String inputUser, String inputPass) {
-        return inputUser.equals(username) && inputPass.equals(password);
+    public Admin(String nama, String nim) {
+        super(nama, nim);
+    }
+
+    @Override
+    public void login() {
+        java.util.Scanner input = new java.util.Scanner(System.in);
+        System.out.print("Masukkan username: ");
+        String usr = input.nextLine();
+        System.out.print("Masukkan password: ");
+        String pass = input.nextLine();
+
+        if (usr.equals(getNama()) && pass.equals(getNim())) {
+            System.out.println("Login Admin berhasil!");
+            displayInfo();
+        } else {
+            System.out.println("Login Admin gagal. Username atau password salah.");
+        }
+    }
+
+    @Override
+    public void displayInfo() {
+        System.out.println("Halo Admin " + getNama() + ", NIM: " + getNim());
     }
 }

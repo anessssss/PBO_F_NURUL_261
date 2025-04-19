@@ -1,50 +1,27 @@
 import java.util.Scanner;
 
-// Kelas utama untuk menjalankan program login
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Admin admin = new Admin();
-        Mahasiswa mahasiswa = new Mahasiswa("Nurul Anis Fitriyah", "202410370110261");
+        Scanner input = new Scanner(System.in);
 
-        System.out.println("Pilih login");
-        System.out.println("1. Login sebagai Admin");
-        System.out.println("2. Login sebagai Mahasiswa");
-        System.out.print("Masukkan pilihan : ");
-        int pilihan = scanner.nextInt();
-        scanner.nextLine();  // Membersihkan buffer input
+        Admin admin = new Admin("admin261", "password261");
+        Mahasiswa mhs = new Mahasiswa("Nurul anis fitriyah", "202410370110261");
 
-        switch (pilihan) {
-            case 1:
-                System.out.print("Masukkan Username: ");
-                String user = scanner.nextLine();
-                System.out.print("Masukkan Password: ");
-                String pass = scanner.nextLine();
+        System.out.println("Pilih login sebagai:");
+        System.out.println("1. Admin");
+        System.out.println("2. Mahasiswa");
+        System.out.print("Pilihan (1/2): ");
+        int pilihan = input.nextInt();
+        input.nextLine(); // clear buffer
 
-                if (admin.login(user, pass)) {
-                    System.out.println("Login Admin Berhasil!");
-                } else {
-                    System.out.println("Login Admin Gagal! Username atau Password salah.");
-                }
-                break;
-
-            case 2:
-                System.out.print("Masukkan Nama: ");
-                String namaInput = scanner.nextLine();
-                System.out.print("Masukkan NIM: ");
-                String nimInput = scanner.nextLine();
-
-                if (mahasiswa.login(namaInput, nimInput)) {
-                    mahasiswa.displayInfo();
-                } else {
-                    System.out.println("Login Mahasiswa Gagal! Nama atau NIM salah.");
-                }
-                break;
-
-            default:
-                System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+        if (pilihan == 1) {
+            admin.login();
+        } else if (pilihan == 2) {
+            mhs.login();
+        } else {
+            System.out.println("Pilihan tidak valid.");
         }
 
-        scanner.close();
+        input.close();
     }
 }
